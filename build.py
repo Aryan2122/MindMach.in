@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 POSTS_DIR = Path("content/posts")
-OUT_DIR = Path("insights")
+OUT_DIR = Path("site/insights")
 OUT_DIR.mkdir(exist_ok=True)
 
 post_template = Path("templates/post.html").read_text()
