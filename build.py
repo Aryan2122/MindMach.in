@@ -1,12 +1,13 @@
 import json
 from pathlib import Path
+from string import Template
 
 POSTS_DIR = Path("content/posts")
 OUT_DIR = Path("site/insights")
-OUT_DIR.mkdir(exist_ok=True)
+OUT_DIR.mkdir(exist_ok=True, parents=True)
 
-post_template = Path("templates/post.html").read_text()
-listing_template = Path("templates/listing.html").read_text()
+post_template = Template(Path("templates/post.html").read_text())
+listing_template = Template(Path("templates/listing.html").read_text())
 
 all_posts = []
 for f in POSTS_DIR.glob("*.json"):
@@ -19,7 +20,7 @@ for f in POSTS_DIR.glob("*.json"):
     findings_html = "".join(f"<li>{k}</li>" for k in data["key_findings"])
     takeaways_html = "".join(f"<li>{t}</li>" for t in data["key_takeaways"])
 
-    html = post_template.format(
+    html = post_template.safe_substitute(
         title=data["title"], deck=data["deck"], category=data["category"],
         findings=findings_html, sections=sections_html,
         pull_quote=data["pull_quote"], takeaways=takeaways_html,
@@ -28,8 +29,12 @@ for f in POSTS_DIR.glob("*.json"):
     (OUT_DIR / f"{data['slug']}.html").write_text(html)
 
 cards_html = "".join(
-    f'<a href="/insights/{p["slug"]}.html"><h3>{p["title"]}</h3><p>{p["deck"]}</p></a>'
+    f'<a class="insight-card" href="/insights/{p["slug"]}.html">'
+    f'<div class="ic-tag">{p["category"]}</div>'
+    f'<h3 class="ic-title">{p["title"]}</h3>'
+    f'<p class="ic-excerpt">{p["deck"]}</p>'
+    f'</a>'
     for p in all_posts
 )
-(OUT_DIR / "index.html").write_text(listing_template.format(cards=cards_html))
+(OUT_DIR / "index.html").write_text(listing_template.safe_substitute(cards=cards_html))
 print(f"Built {len(all_posts)} posts.")
