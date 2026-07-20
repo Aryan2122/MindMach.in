@@ -1,7 +1,7 @@
 name: Build Insights
 on:
   push:
-    branches: [Insights-fv-21]
+    branches: [Insights-fv-210726]
 jobs:
   build:
     runs-on: ubuntu-latest
