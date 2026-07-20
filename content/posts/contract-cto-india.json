@@ -1,0 +1,24 @@
+{
+  "slug": "contract-cto-india",
+  "title": "Contract CTO India: When Fractional Leadership Makes Sense",
+  "category": "Leadership & Org Design",
+  "deck": "Not every startup needs a full-time CTO. Here is how to know which stage you're in.",
+  "date": "2026-07-19",
+  "key_findings": [
+    "Fractional CTO engagements average 15-20 hours/week",
+    "Cost is typically 30-40% of a full-time senior hire",
+    "Most engagements convert to advisory role after 12 months"
+  ],
+  "sections": [
+    {"heading": "The problem isn't leadership, it's timing", "body": "Early-stage companies often hire a full-time CTO before the technical complexity justifies the cost."},
+    {"heading": "Why fractional works at this stage", "body": "A contract CTO brings pattern recognition from multiple companies without the fixed cost of full-time equity and salary."}
+  ],
+  "pull_quote": "You don't need a permanent CTO. You need permanent clarity.",
+  "key_takeaways": [
+    "Match engagement type to actual technical complexity",
+    "Fractional works best before Series A",
+    "Define a clear handoff plan from day one"
+  ],
+  "author": "Kavita Rai",
+  "author_title": "Founder, MindMach"
+}
