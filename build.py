@@ -1,4 +1,5 @@
 import json
+import html
 from pathlib import Path
 from string import Template
 
@@ -6,35 +7,55 @@ POSTS_DIR = Path("content/posts")
 OUT_DIR = Path("site/insights")
 OUT_DIR.mkdir(exist_ok=True, parents=True)
 
-post_template = Template(Path("templates/post.html").read_text())
-listing_template = Template(Path("templates/listing.html").read_text())
+post_template = Template(Path("templates/post.html").read_text(encoding="utf-8"))
+listing_template = Template(Path("templates/listing.html").read_text(encoding="utf-8"))
 
 all_posts = []
-for f in POSTS_DIR.glob("*.json"):
-    data = json.loads(f.read_text())
+
+for f in sorted(POSTS_DIR.glob("*.json")):
+    data = json.loads(f.read_text(encoding="utf-8"))
     all_posts.append(data)
 
     sections_html = "".join(
-        f"<h2>{s['heading']}</h2><p>{s['body']}</p>" for s in data["sections"]
+        f"<section><h2>{html.escape(s['heading'])}</h2><p>{html.escape(s['body'])}</p></section>"
+        for s in data.get("sections", [])
     )
-    findings_html = "".join(f"<li>{k}</li>" for k in data["key_findings"])
-    takeaways_html = "".join(f"<li>{t}</li>" for t in data["key_takeaways"])
 
-    html = post_template.safe_substitute(
-        title=data["title"], deck=data["deck"], category=data["category"],
-        findings=findings_html, sections=sections_html,
-        pull_quote=data["pull_quote"], takeaways=takeaways_html,
-        author=data["author"], author_title=data["author_title"], date=data["date"]
+    findings_html = "".join(
+        f"<li>{html.escape(item)}</li>"
+        for item in data.get("key_findings", [])
     )
-    (OUT_DIR / f"{data['slug']}.html").write_text(html)
+
+    takeaways_html = "".join(
+        f"<li>{html.escape(item)}</li>"
+        for item in data.get("key_takeaways", [])
+    )
+
+    html_output = post_template.safe_substitute(
+        title=html.escape(data.get("title", "")),
+        deck=html.escape(data.get("deck", "")),
+        category=html.escape(data.get("category", "")),
+        findings=findings_html,
+        sections=sections_html,
+        pull_quote=html.escape(data.get("pull_quote", "")),
+        takeaways=takeaways_html,
+        author=html.escape(data.get("author", "")),
+        author_title=html.escape(data.get("author_title", "")),
+        date=html.escape(data.get("date", "")),
+    )
+
+    (OUT_DIR / f"{data['slug']}.html").write_text(html_output, encoding="utf-8")
 
 cards_html = "".join(
-    f'<a class="insight-card" href="/insights/{p["slug"]}.html">'
-    f'<div class="ic-tag">{p["category"]}</div>'
-    f'<h3 class="ic-title">{p["title"]}</h3>'
-    f'<p class="ic-excerpt">{p["deck"]}</p>'
+    f'<a class="insight-card" href="/insights/{html.escape(p["slug"])}.html">'
+    f'<div class="ic-tag">{html.escape(p.get("category", ""))}</div>'
+    f'<h3 class="ic-title">{html.escape(p.get("title", ""))}</h3>'
+    f'<p class="ic-excerpt">{html.escape(p.get("deck", ""))}</p>'
     f'</a>'
     for p in all_posts
 )
-(OUT_DIR / "index.html").write_text(listing_template.safe_substitute(cards=cards_html))
+
+listing_output = listing_template.safe_substitute(cards=cards_html)
+(OUT_DIR / "index.html").write_text(listing_output, encoding="utf-8")
+
 print(f"Built {len(all_posts)} posts.")
