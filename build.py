@@ -42,10 +42,10 @@ for data in all_posts:
         for p in data.get("related_posts", [])
     )
 
-    author = data.get("author", "").strip()
-    author_title = data.get("author_title", "").strip()
-    author_linkedin = data.get("author_linkedin", "").strip()
-    author_tags = data.get("author_tags", [])
+author = (data.get("author") or "").strip()
+author_title = (data.get("author_title") or "").strip()
+author_linkedin = (data.get("author_linkedin") or "").strip()
+author_tags = data.get("author_tags") or []
 
     author_tags_html = "".join(
         f"<span>{html.escape(tag)}</span>"
