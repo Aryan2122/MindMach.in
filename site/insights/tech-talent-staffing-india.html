@@ -8,224 +8,262 @@
   <style>
     :root {
       --font-display: "Fraunces", Georgia, serif;
-      --font-body: "DM Sans", system-ui, sans-serif;
-      --color-bg: #f9f8f5;
-      --color-surface: #ffffff;
-      --color-ink: #0e0e0c;
-      --color-ink-muted: #5a5a54;
-      --color-ink-faint: #aeada6;
-      --color-accent: #1a42c3;
-      --color-accent-light: #eef2ff;
-      --color-border: #e4e3de;
-      --shadow-sm: 0 4px 18px rgba(14, 14, 12, 0.06);
-      --shadow-md: 0 10px 30px rgba(14, 14, 12, 0.08);
+      --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+      --bg: #faf9f5;
+      --bg-card: #ffffff;
+      --ink: #14161c;
+      --ink-soft: #54565f;
+      --ink-faint: #a3a29a;
+      --accent: #1c2a48;
+      --accent-soft: #eef0f7;
+      --border: #e3dfd2;
       --radius-lg: 16px;
-      --radius-xl: 24px;
-      --content: 860px;
+      --shadow-sm: 0 14px 30px rgba(20, 22, 28, 0.06);
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      background: var(--color-bg);
-      color: var(--color-ink);
       font-family: var(--font-body);
-      line-height: 1.7;
+      background: var(--bg);
+      color: var(--ink);
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.7;
     }
 
-    .wrap {
-      width: min(var(--content), calc(100% - 32px));
+    a { color: inherit; text-decoration: none; }
+
+    /* Header – same as listing */
+    .mm-header {
+      background: #faf9f5;
+      border-bottom: 1px solid #e3dfd2;
+    }
+
+    .mm-header-inner {
+      max-width: 1100px;
       margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
     }
 
-    .post-wrap {
-      padding: 40px 0 72px;
+    .mm-brand {
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: -0.02em;
+      color: #14161c;
     }
 
-    .back-link {
-      display: inline-block;
-      margin-bottom: 24px;
-      color: var(--color-accent);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
+    .mm-nav {
+      display: flex;
+      gap: 32px;
+      font-size: 15px;
+      color: var(--ink-soft);
     }
 
-    .back-link:hover {
+    .mm-nav a:hover {
+      color: var(--accent);
       text-decoration: underline;
     }
 
-    .post-meta {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-
-    .ic-tag {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: var(--color-accent-light);
-      color: var(--color-accent);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .post-date {
-      color: var(--color-ink-muted);
+    .mm-cta {
+      padding: 10px 20px;
+      border-radius: 4px;
+      background: #1c2a48;
+      color: #ffffff;
       font-size: 14px;
     }
 
-    .post-title {
-      margin: 0 0 14px;
+    .mm-cta:hover {
+      background: #162036;
+    }
+
+    @media (max-width: 720px) {
+      .mm-header-inner {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+      }
+      .mm-nav {
+        gap: 18px;
+        font-size: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    /* Article layout */
+    .page-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    .back {
+      font-size: 14px;
+      color: var(--ink-soft);
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    .back:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 18px;
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+
+    .meta-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .title {
+      margin: 0 0 12px;
       font-family: var(--font-display);
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      line-height: 1.05;
+      font-size: clamp(2.1rem, 3.6vw, 2.8rem);
       letter-spacing: -0.03em;
-      max-width: 12ch;
+      line-height: 1.08;
     }
 
-    .post-deck {
-      margin: 0 0 32px;
+    .deck {
+      margin: 0 0 28px;
       max-width: 720px;
-      font-size: 1.1rem;
-      color: var(--color-ink-muted);
+      font-size: 1.05rem;
+      color: var(--ink-soft);
     }
 
-    .post-findings,
-    .post-takeaways,
-    .post-pullquote,
-    .post-author {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
+    .key-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
       border-radius: var(--radius-lg);
+      padding: 22px 22px 20px;
       box-shadow: var(--shadow-sm);
+      margin: 0 0 28px;
     }
 
-    .post-findings,
-    .post-takeaways,
-    .post-author {
-      padding: 24px;
-      margin: 32px 0;
-    }
-
-    .findings-heading,
-    .takeaways-heading {
-      margin: 0 0 14px;
+    .key-box h2 {
+      margin: 0 0 12px;
       font-size: 1rem;
-      font-weight: 700;
-      color: var(--color-ink);
+      font-weight: 600;
     }
 
-    .findings-list,
-    .takeaways-list {
+    .key-box ul {
       margin: 0;
       padding-left: 20px;
+      font-size: 0.97rem;
+      color: var(--ink-soft);
     }
 
-    .findings-list li,
-    .takeaways-list li {
-      margin-bottom: 10px;
-      color: var(--color-ink-muted);
+    .key-box li {
+      margin-bottom: 8px;
     }
 
-    .post-body {
-      margin-top: 28px;
+    article {
+      margin: 32px 0 32px;
+      font-size: 1rem;
     }
 
-    .post-body h2 {
-      margin: 40px 0 12px;
+    article h2 {
+      margin: 32px 0 10px;
       font-family: var(--font-display);
-      font-size: clamp(1.5rem, 2vw, 2.1rem);
-      line-height: 1.15;
+      font-size: 1.35rem;
       letter-spacing: -0.02em;
     }
 
-    .post-body p {
-      margin: 0 0 18px;
+    article p {
+      margin: 0 0 16px;
       max-width: 72ch;
-      color: var(--color-ink);
-      font-size: 1rem;
     }
 
-    .post-pullquote {
-      margin: 40px 0;
-      padding: 28px 28px 28px 24px;
-      border-left: 4px solid var(--color-accent);
+    blockquote {
+      margin: 36px 0;
+      padding: 20px 22px 20px 18px;
+      border-left: 3px solid var(--accent);
+      background: var(--accent-soft);
       font-family: var(--font-display);
-      font-size: clamp(1.3rem, 2vw, 1.9rem);
-      line-height: 1.3;
-      color: var(--color-ink);
+      font-size: 1.25rem;
+      line-height: 1.4;
+      color: var(--accent);
     }
 
-    .post-author p {
-      margin: 0;
-      color: var(--color-ink-muted);
+    .author {
+      margin-top: 32px;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
     }
 
-    .post-author strong {
-      color: var(--color-ink);
-    }
-
-    @media (max-width: 640px) {
-      .post-wrap {
-        padding: 28px 0 56px;
-      }
-
-      .post-findings,
-      .post-takeaways,
-      .post-author,
-      .post-pullquote {
-        padding: 20px;
-      }
-
-      .post-title {
-        max-width: 100%;
-      }
+    .author strong {
+      color: var(--ink);
     }
   </style>
 </head>
 <body>
+  <header class="mm-header">
+    <div class="mm-header-inner">
+      <a href="/" class="mm-brand">MindMach</a>
+      <nav class="mm-nav">
+        <a href="/#services">Services</a>
+        <a href="/#why-us">Why Us</a>
+        <a href="/#roles">Roles</a>
+        <a href="/#how-it-works">How It Works</a>
+      </nav>
+      <a href="/#contact" class="mm-cta">Get Started</a>
+    </div>
+  </header>
 
-  <main class="wrap post-wrap">
-    <a href="/insights/" class="back-link">← Back to Insights</a>
+  <main class="page-wrap">
+    <a href="/insights/" class="back">← Back to Insights</a>
 
-    <div class="post-meta">
-      <span class="ic-tag">India Tech Market</span>
-      <span class="post-date">2026-07-19</span>
+    <div class="meta-row">
+      <span class="meta-pill">India Tech Market</span>
+      <span>2026-07-19</span>
     </div>
 
-    <h1 class="post-title">Tech Talent Staffing India: What Changed After the Layoffs</h1>
-    <p class="post-deck">5.8 million professionals moved. Most companies still haven&#x27;t updated how they hire.</p>
+    <h1 class="title">Tech Talent Staffing India: What Changed After the Layoffs</h1>
+    <p class="deck">5.8 million professionals moved. Most companies still haven&#x27;t updated how they hire.</p>
 
-    <section class="post-findings">
-      <h2 class="findings-heading">Key findings</h2>
-      <ul class="findings-list"><li>5.8M tech professionals shifted roles post-layoffs</li><li>NASSCOM projects $315B market by 2027</li><li>SMBs now drive 40% of new engineering hiring demand</li></ul>
+    <section class="key-box">
+      <h2>Key findings</h2>
+      <ul>
+        <li>5.8M tech professionals shifted roles post-layoffs</li><li>NASSCOM projects $315B market by 2027</li><li>SMBs now drive 40% of new engineering hiring demand</li>
+      </ul>
     </section>
 
-    <section class="post-body">
+    <article>
       <section><h2>India does not have a talent shortage</h2><p>It has a distribution problem. Talent concentrated in a few cities and a few company types isn&#x27;t reaching the companies that need it.</p></section><section><h2>Why SMBs are the next wave</h2><p>Large tech companies over-hired and corrected. SMBs are absorbing that talent but lack the employer brand to find it directly.</p></section>
+    </article>
+
+    <blockquote>
+      The talent didn&#x27;t disappear. It just stopped applying to job boards.
+    </blockquote>
+
+    <section class="key-box">
+      <h2>Key takeaways</h2>
+      <ul>
+        <li>Look beyond traditional job boards for senior talent</li><li>SMB hiring requires different sourcing than enterprise</li><li>Speed matters more than brand recognition right now</li>
+      </ul>
     </section>
 
-    <blockquote class="post-pullquote">The talent didn&#x27;t disappear. It just stopped applying to job boards.</blockquote>
-
-    <section class="post-takeaways">
-      <h2 class="takeaways-heading">Key takeaways</h2>
-      <ul class="takeaways-list"><li>Look beyond traditional job boards for senior talent</li><li>SMB hiring requires different sourcing than enterprise</li><li>Speed matters more than brand recognition right now</li></ul>
-    </section>
-
-    <section class="post-author">
-      <p><strong>Kavita Rai</strong>, Founder, MindMach</p>
-    </section>
+    <p class="author">
+      <strong>Kavita Rai</strong>, Founder, MindMach
+    </p>
   </main>
-
 </body>
 </html>
