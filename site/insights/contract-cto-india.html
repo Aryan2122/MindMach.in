@@ -3,8 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contract CTO India: When Fractional Leadership Makes Sense | MindMach Insights</title>
+  <title>Contract CTO India: When Fractional Leadership Makes Sense | MindMach</title>
   <meta name="description" content="Not every startup needs a full-time CTO. Here is how to know which stage you&#x27;re in.">
+  <link rel="canonical" href="https://mindmach.in/insights/contract-cto-india/">
+
+  <meta property="og:title" content="Contract CTO India: When Fractional Leadership Makes Sense | MindMach">
+  <meta property="og:description" content="Not every startup needs a full-time CTO. Here is how to know which stage you&#x27;re in.">
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2026-07-19">
+  <meta property="article:author" content="Kavita Rai">
+  <meta property="article:section" content="Leadership &amp; Org Design">
+
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "Article", "headline": "Contract CTO India: When Fractional Leadership Makes Sense", "description": "Not every startup needs a full-time CTO. Here is how to know which stage you're in.", "author": {"@type": "Person", "name": "Kavita Rai", "jobTitle": "Founder, MindMach", "worksFor": {"@type": "Organization", "name": "MindMach"}}, "publisher": {"@type": "Organization", "name": "MindMach", "url": "https://mindmach.in"}, "datePublished": "2026-07-19", "dateModified": "2026-07-19", "mainEntityOfPage": "https://mindmach.in/insights/contract-cto-india/", "keywords": []}
+  </script>
+
   <style>
     :root {
       --font-display: "Fraunces", Georgia, serif;
@@ -34,7 +47,6 @@
 
     a { color: inherit; text-decoration: none; }
 
-    /* Header – same as listing */
     .mm-header {
       background: #faf9f5;
       border-bottom: 1px solid #e3dfd2;
@@ -77,25 +89,6 @@
       font-size: 14px;
     }
 
-    .mm-cta:hover {
-      background: #162036;
-    }
-
-    @media (max-width: 720px) {
-      .mm-header-inner {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 16px;
-      }
-      .mm-nav {
-        gap: 18px;
-        font-size: 14px;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-    }
-
-    /* Article layout */
     .page-wrap {
       max-width: 860px;
       margin: 0 auto;
@@ -107,11 +100,6 @@
       color: var(--ink-soft);
       margin-bottom: 20px;
       display: inline-block;
-    }
-
-    .back:hover {
-      color: var(--accent);
-      text-decoration: underline;
     }
 
     .meta-row {
@@ -149,7 +137,7 @@
       color: var(--ink-soft);
     }
 
-    .key-box {
+    .key-box, .author-box, .cta-box, .related-box {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
@@ -158,7 +146,7 @@
       margin: 0 0 28px;
     }
 
-    .key-box h2 {
+    .key-box h2, .related-box h2 {
       margin: 0 0 12px;
       font-size: 1rem;
       font-weight: 600;
@@ -169,10 +157,6 @@
       padding-left: 20px;
       font-size: 0.97rem;
       color: var(--ink-soft);
-    }
-
-    .key-box li {
-      margin-bottom: 8px;
     }
 
     article {
@@ -203,14 +187,82 @@
       color: var(--accent);
     }
 
-    .author {
-      margin-top: 32px;
-      font-size: 0.95rem;
-      color: var(--ink-soft);
+    .author-row {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
     }
 
-    .author strong {
-      color: var(--ink);
+    .author-row img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border);
+    }
+
+    .author-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 0;
+    }
+
+    .author-tags span {
+      font-size: 11px;
+      color: var(--ink-soft);
+      background: var(--accent-soft);
+      border-radius: 999px;
+      padding: 4px 8px;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .related-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    .related-card .tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      letter-spacing: 0.14em;
+      margin-bottom: 8px;
+    }
+
+    .cta-box a {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 16px;
+      border-radius: 4px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 14px;
+    }
+
+    @media (max-width: 800px) {
+      .related-grid {
+        grid-template-columns: 1fr;
+      }
+      .author-row {
+        flex-direction: column;
+      }
+      .mm-header-inner {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .mm-nav {
+        gap: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -241,29 +293,43 @@
 
     <section class="key-box">
       <h2>Key findings</h2>
-      <ul>
-        <li>Fractional CTO engagements average 15-20 hours/week</li><li>Cost is typically 30-40% of a full-time senior hire</li><li>Most engagements convert to advisory role after 12 months</li>
-      </ul>
+      <ul><li>Fractional CTO engagements average 15-20 hours/week</li><li>Cost is typically 30-40% of a full-time senior hire</li><li>Most engagements convert to advisory role after 12 months</li></ul>
     </section>
 
     <article>
       <section><h2>The problem isn&#x27;t leadership, it&#x27;s timing</h2><p>Early-stage companies often hire a full-time CTO before the technical complexity justifies the cost.</p></section><section><h2>Why fractional works at this stage</h2><p>A contract CTO brings pattern recognition from multiple companies without the fixed cost of full-time equity and salary.</p></section>
     </article>
 
-    <blockquote>
-      You don&#x27;t need a permanent CTO. You need permanent clarity.
-    </blockquote>
+    <blockquote>You don&#x27;t need a permanent CTO. You need permanent clarity.</blockquote>
 
     <section class="key-box">
       <h2>Key takeaways</h2>
-      <ul>
-        <li>Match engagement type to actual technical complexity</li><li>Fractional works best before Series A</li><li>Define a clear handoff plan from day one</li>
-      </ul>
+      <ul><li>Match engagement type to actual technical complexity</li><li>Fractional works best before Series A</li><li>Define a clear handoff plan from day one</li></ul>
     </section>
 
-    <p class="author">
-      <strong>Kavita Rai</strong>, Founder, MindMach
-    </p>
+    <section class="author-box">
+      <div class="author-row">
+        <img src="/placeholder-5.jpg" alt="Kavita Rai">
+        <div>
+          <p><strong>Kavita Rai</strong>, Founder, MindMach</p>
+          <p><a href="#" target="_blank" rel="noopener noreferrer">LinkedIn profile</a></p>
+          <div class="author-tags"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="related-box">
+      <h2>Related posts</h2>
+      <div class="related-grid">
+        
+      </div>
+    </section>
+
+    <section class="cta-box">
+      <h2>Need senior engineering talent fast?</h2>
+      <p>Tell us what you need and we’ll send relevant profiles quickly.</p>
+      <a href="/#contact">Get Started</a>
+    </section>
   </main>
 </body>
 </html>
