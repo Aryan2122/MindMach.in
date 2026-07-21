@@ -47,10 +47,10 @@ author_title = (data.get("author_title") or "").strip()
 author_linkedin = (data.get("author_linkedin") or "").strip()
 author_tags = data.get("author_tags") or []
 
-    author_tags_html = "".join(
-        f"<span>{html.escape(tag)}</span>"
-        for tag in author_tags
-    )
+author_tags_html = "".join(
+  f"<span>{html.escape(tag)}</span>"
+   for tag in author_tags
+ )
 
     author_parts = []
 
