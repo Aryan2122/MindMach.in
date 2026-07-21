@@ -54,6 +54,7 @@ cards_html = "".join(
     f'</a>'
     for p in all_posts
 )
+)
 
 listing_output = listing_template.safe_substitute(cards=cards_html)
 (OUT_DIR / "index.html").write_text(listing_output, encoding="utf-8")
