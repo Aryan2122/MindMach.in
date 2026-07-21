@@ -47,13 +47,15 @@ for f in sorted(POSTS_DIR.glob("*.json")):
     (OUT_DIR / f"{data['slug']}.html").write_text(html_output, encoding="utf-8")
 
 cards_html = "".join(
-    f'<a class="insight-card" href="/insights/{html.escape(p["slug"])}.html">'
-    f'<div class="ic-tag">{html.escape(p.get("category", ""))}</div>'
-    f'<h3 class="ic-title">{html.escape(p.get("title", ""))}</h3>'
-    f'<p class="ic-excerpt">{html.escape(p.get("deck", ""))}</p>'
-    f'</a>'
+    f'''
+    <a class="card" href="/insights/{html.escape(p["slug"])}.html">
+      <div class="card-tag">{html.escape(p.get("category", ""))}</div>
+      <h2 class="card-title">{html.escape(p.get("title", ""))}</h2>
+      <p class="card-deck">{html.escape(p.get("deck", ""))}</p>
+      <div class="card-meta">{html.escape(p.get("date", ""))}</div>
+    </a>
+    '''
     for p in all_posts
-)
 )
 
 listing_output = listing_template.safe_substitute(cards=cards_html)
