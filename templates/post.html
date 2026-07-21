@@ -213,21 +213,6 @@ $schema_json
       color: var(--accent);
     }
 
-    .author-row {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-
-    .author-row img {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 1px solid var(--border);
-      flex-shrink: 0;
-    }
-
     .author-text p {
       margin: 0 0 8px;
       color: var(--ink-soft);
@@ -314,10 +299,6 @@ $schema_json
         grid-template-columns: 1fr;
       }
 
-      .author-row {
-        flex-direction: column;
-      }
-
       .mm-header-inner {
         flex-wrap: wrap;
         justify-content: center;
@@ -380,18 +361,7 @@ $schema_json
       </ul>
     </section>
 
-    <section class="author-box">
-      <div class="author-row">
-        <img src="$author_image" alt="$author">
-        <div class="author-text">
-          <p><strong>$author</strong>, $author_title</p>
-          <p><a href="$author_linkedin" target="_blank" rel="noopener noreferrer">LinkedIn profile</a></p>
-          <div class="author-tags">
-            $author_tags_html
-          </div>
-        </div>
-      </div>
-    </section>
+    $author_block
 
     <section class="related-box">
       <h2>Related posts</h2>
