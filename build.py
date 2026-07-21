@@ -32,20 +32,51 @@ for data in all_posts:
         for item in data.get("key_takeaways", [])
     )
 
-    author_tags_html = "".join(
-        f"<span>{html.escape(tag)}</span>"
-        for tag in data.get("author_tags", [])
-    )
-
     related_posts_html = "".join(
         f'''
         <a class="related-card" href="/insights/{html.escape(p["slug"])}.html">
           <div class="tag">{html.escape(p.get("category", ""))}</div>
-          <div>{html.escape(p.get("title", ""))}</div>
+          <div class="title-sm">{html.escape(p.get("title", ""))}</div>
         </a>
         '''
         for p in data.get("related_posts", [])
     )
+
+    author = data.get("author", "").strip()
+    author_title = data.get("author_title", "").strip()
+    author_linkedin = data.get("author_linkedin", "").strip()
+    author_tags = data.get("author_tags", [])
+
+    author_tags_html = "".join(
+        f"<span>{html.escape(tag)}</span>"
+        for tag in author_tags
+    )
+
+    author_parts = []
+
+    if author:
+        author_line = f"<strong>{html.escape(author)}</strong>"
+        if author_title:
+            author_line += f", {html.escape(author_title)}"
+        author_parts.append(f"<p>{author_line}</p>")
+
+    if author_linkedin:
+        author_parts.append(
+            f'<p><a href="{html.escape(author_linkedin)}" target="_blank" rel="noopener noreferrer">LinkedIn profile</a></p>'
+        )
+
+    if author_tags_html:
+        author_parts.append(f'<div class="author-tags">{author_tags_html}</div>')
+
+    author_block = ""
+    if author_parts:
+        author_block = f'''
+    <section class="author-box">
+      <div class="author-text">
+        {''.join(author_parts)}
+      </div>
+    </section>
+'''
 
     schema = {
         "@context": "https://schema.org",
@@ -85,10 +116,7 @@ for data in all_posts:
         pull_quote=html.escape(data.get("pull_quote", "")),
         takeaways=takeaways_html,
         author=html.escape(data.get("author", "")),
-        author_title=html.escape(data.get("author_title", "")),
-        author_linkedin=html.escape(data.get("author_linkedin", "#")),
-        author_image=html.escape(data.get("author_image", "/placeholder-5.jpg")),
-        author_tags_html=author_tags_html,
+        author_block=author_block,
         related_posts_html=related_posts_html,
         cta_title=html.escape(data.get("cta_title", "Need senior engineering talent fast?")),
         cta_text=html.escape(data.get("cta_text", "Tell us what you need and we’ll send relevant profiles quickly.")),
