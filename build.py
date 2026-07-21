@@ -142,4 +142,4 @@ cards_html = "".join(
 listing_output = listing_template.safe_substitute(cards=cards_html)
 (OUT_DIR / "index.html").write_text(listing_output, encoding="utf-8")
 
-print(f"Built {len(all_posts)} posts.")
+print(f"Built {len(all_posts)} posts.") 
